@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Star Wars</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="assets/css/styles.css">
+    </head>
+    <body>
+        <header>
+            <h1>Star Wars Web Application</h1>
+            <nav>
+                <ul>
+                    <li><a href="#characters">Characters</a></li>
+                    <li><a href="#planets">Planets</a></li>
+                    <li><a href="#films">Films</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id="banner">
+                <img src="assets/img/banner.jpg" alt="Star Wars Banner"">
+            </section>
+            <section id="intro">
+                <p>Welcome to the Star Wars web application. Explore characters, planets, and films from the Star Wars universe.</p>
+            </section>
+            <section id="characters">
+                <h2>Characters</h2>
+                <input type="text" id="search" placeholder="Search for a character...">
+                <div id="character-list">
+                    <!-- Character content will be dynamically loaded here -->
+                </div>
+                <div id="pagination">
+                    <button id="prev">Previous</button>
+                    <button id="next">Next</button>
+                </div>
+            </section>
+            <section id="planets">
+                <h2>Planets</h2>
+                <!-- Planet content will be dynamically loaded here -->
+            </section>
+            <section id="films">
+                <h2>Films</h2>
+                <!-- Film content will be dynamically loaded here -->
+            </section>
+        </main>
+        <footer>
+            <p></p>
+        </footer>
+        <script src="assets/js/script.js" async defer></script>
+    </body>
+</html>
