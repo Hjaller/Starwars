@@ -56,8 +56,22 @@
             </section>
             <section id="films">
                 <h2>Films</h2>
-                <!-- Film content will be dynamically loaded here -->
+                <div class="film-container" id="film-list">
+                    <!-- Film content will be dynamically loaded here -->
+                </div>
+                <div id="film-pagination">
+                    <button id="film-prev">Previous</button>
+                    <button id="film-next">Next</button>
+                </div>
             </section>
+            
+            <!-- Modal for opening crawl -->
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div id="crawl-content"></div>
+                </div>
+            </div>
         </main>
         <footer>
             <p></p>

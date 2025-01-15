@@ -96,16 +96,16 @@ footer p {
         font-size: 14px;
     }
 
-    .character, .planet {
+    .character, .planet, .film{
         flex: 1 1 100%; /* Fuldbredde for hver række */
     }
 
-    .character-container, .planet-container {
+    .character-container, .planet-container, .film-container{
         flex-direction: column; /* Sørg for vertikal placering */
     }
 }
 
-.character, .planet {
+.character, .planet, .film {
     border: 1px solid #444;
     padding: 10px;
     margin: 10px 0;
@@ -113,8 +113,8 @@ footer p {
     flex: 1 1 calc(33.333% - 20px); /* Adjust the width for larger screens */
     box-sizing: border-box;
 }
-
-.character-container, .planet-container {
+    
+.character-container, .planet-container, .film-container {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -122,7 +122,7 @@ footer p {
 }
 
 
-#search {
+#search, #climate-filter, .view-crawl{
     margin: 10px 0;
     padding: 10px;
     border-radius: 6px;
@@ -135,25 +135,57 @@ footer p {
     border: 1px solid #444;
 }
 
-#climate-filter {
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 6px;
-}
-
-#next, #prev {
+#next, #prev, #film-prev, #film-next {
     border-radius: 6px;
     padding: 8px 30px;
     background-color: lightgray;
 }
 
-#next:hover:not([disabled]), #prev:hover:not([disabled]) {
+#next:hover:not([disabled]), #prev:hover:not([disabled]), #film-prev:hover:not([disabled]), #film-next:hover:not([disabled]) {
     background-color: #ffcc00;
     color: #000;
 }
 
 
-#next:disabled, #prev:disabled {
+#next:disabled, #prev:disabled, #film-prev:disabled, #film-next:disabled {
     background-color: #444;
     color: #fff;
+}
+
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #111;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    color: #ffcc00;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
 }

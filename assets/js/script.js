@@ -6,10 +6,18 @@ const searchInput = document.getElementById('search');
 const prevButton = document.getElementById('prev');
 const nextButton = document.getElementById('next');
 const climateFilter = document.getElementById('climate-filter');
+const modal = document.getElementById('modal');
+const closeModal = document.querySelector('.close');
+const crawlContent = document.getElementById('crawl-content');
+const filmPrevButton = document.getElementById('film-prev');
+const filmNextButton = document.getElementById('film-next');
 let currentPage = 1;
+let currentFilmPage = 1;
 let currentSearchTerm = '';
 let currentClimateFilter = '';
 let allPlanets = [];
+let filmNextUrl = null;
+let filmPrevUrl = null;
 
 // Function to fetch characters from SWAPI
 const fetchCharacters = async (page = 1, searchTerm = '') => {
@@ -25,7 +33,7 @@ const fetchCharacters = async (page = 1, searchTerm = '') => {
         const data = await response.json();
         console.log('Fetched characters:', data.results); // Debugging line
         displayCharacters(data.results);
-        updatePaginationButtons(data);
+        updatePaginationButtons(data, 'characters');
     } catch (error) {
         console.error('Error fetching characters:', error);
     }
@@ -86,14 +94,62 @@ const displayPlanets = (planets) => {
         planetList.appendChild(planetDiv);
     });
     console.log('Displayed planets:', planets); // Debugging line
-    console.log('Current climate filter:', currentClimateFilter); // Debugging line
-    console.log('Planets count:', planets.length); // Debugging line
+};
+
+// Function to fetch films from SWAPI
+const fetchFilms = async (url = 'https://swapi.py4e.com/api/films/') => {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        console.log('Fetched films:', data.results); // Debugging line
+        filmNextUrl = data.next;
+        filmPrevUrl = data.previous;
+        displayFilms(data.results);
+        updatePaginationButtons(data, 'films');
+    } catch (error) {
+        console.error('Error fetching films:', error);
+    }
+};
+
+// Function to display films
+const displayFilms = (films) => {
+    const filmList = document.getElementById('film-list');
+    filmList.innerHTML = '';
+    films.forEach(film => {
+        const filmDiv = document.createElement('div');
+        filmDiv.classList.add('film');
+        filmDiv.innerHTML = `
+            <h3>${film.title}</h3>
+            <p>Release Date: ${film.release_date}</p>
+            <button class="view-crawl" data-crawl="${film.opening_crawl}">View Opening Crawl</button>
+        `;
+        filmList.appendChild(filmDiv);
+    });
+
+    // Add event listeners to view crawl buttons
+    document.querySelectorAll('.view-crawl').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const crawlText = e.target.getAttribute('data-crawl');
+            crawlContent.textContent = crawlText;
+            modal.style.display = 'block';
+        });
+    });
+
+    console.log('Displayed films:', films); // Debugging line
 };
 
 // Function to update pagination buttons
-const updatePaginationButtons = (data) => {
-    prevButton.disabled = !data.previous;
-    nextButton.disabled = !data.next;
+const updatePaginationButtons = (data, type) => {
+    if (type === 'characters') {
+        prevButton.disabled = !data.previous;
+        nextButton.disabled = !data.next;
+    } else if (type === 'films') {
+        filmPrevButton.disabled = !data.previous;
+        filmNextButton.disabled = !data.next;
+    }
 };
 
 // Function to show a section and hide others
@@ -147,6 +203,7 @@ document.querySelector('a[href="#planets"]').addEventListener('click', async (e)
 document.querySelector('a[href="#films"]').addEventListener('click', (e) => {
     e.preventDefault();
     showSection(filmsSection);
+    fetchFilms();
     updateActiveNavLink(e.target);
 });
 
@@ -166,16 +223,39 @@ climateFilter.addEventListener('change', (e) => {
 });
 
 // Event listeners for pagination buttons
-prevButton.addEventListener('click', () => {
-    if (currentPage > 1) {
-        currentPage--;
-        fetchCharacters(currentPage, currentSearchTerm);
+const handlePagination = (type, direction) => {
+    if (type === 'characters') {
+        if (direction === 'prev' && currentPage > 1) {
+            currentPage--;
+            fetchCharacters(currentPage, currentSearchTerm);
+        } else if (direction === 'next') {
+            currentPage++;
+            fetchCharacters(currentPage, currentSearchTerm);
+        }
+    } else if (type === 'films') {
+        if (direction === 'prev' && filmPrevUrl) {
+            fetchFilms(filmPrevUrl);
+        } else if (direction === 'next' && filmNextUrl) {
+            fetchFilms(filmNextUrl);
+        }
     }
+};
+
+prevButton.addEventListener('click', () => handlePagination('characters', 'prev'));
+nextButton.addEventListener('click', () => handlePagination('characters', 'next'));
+filmPrevButton.addEventListener('click', () => handlePagination('films', 'prev'));
+filmNextButton.addEventListener('click', () => handlePagination('films', 'next'));
+
+// Event listener for closing modal
+closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
 });
 
-nextButton.addEventListener('click', () => {
-    currentPage++;
-    fetchCharacters(currentPage, currentSearchTerm);
+// Event listener for clicking outside the modal
+window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
 });
 
 // Initially show characters section and fetch characters
