@@ -1,3 +1,4 @@
+// Variables and constants
 const charactersSection = document.getElementById('characters');
 const planetsSection = document.getElementById('planets');
 const filmsSection = document.getElementById('films');
