@@ -45,6 +45,10 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
+nav ul li a.active {
+    color: #fff;
+}
+
 main {
     padding: 20px;
 }
@@ -94,12 +98,13 @@ footer p {
 }
 
 
-.character {
+.character, .planet{
     border: 1px solid #444;
     padding: 10px;
     margin: 10px 0;
     background-color: #222;
 }
+
 
 #search {
     margin: 10px 0;
@@ -112,6 +117,12 @@ footer p {
     padding: 10px;
     border-radius: 6px;
     border: 1px solid #444;
+}
+
+#climate-filter {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 6px;
 }
 
 #next, #prev {

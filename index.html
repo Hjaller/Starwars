@@ -14,7 +14,7 @@
     </head>
     <body>
         <header>
-            <h1>Star Wars Web Application</h1>
+            <h1>Star Wars</h1>
             <nav>
                 <ul>
                     <li><a href="#characters">Characters</a></li>
@@ -43,7 +43,16 @@
             </section>
             <section id="planets">
                 <h2>Planets</h2>
-                <!-- Planet content will be dynamically loaded here -->
+                <select id="climate-filter">
+                    <option value="">All Climates</option>
+                    <option value="arid">Arid</option>
+                    <option value="temperate">Temperate</option>
+                    <option value="tropical">Tropical</option>
+                    <!-- Add more climate options as needed -->
+                </select>
+                <div id="planet-list">
+                    <!-- Planet content will be dynamically loaded here -->
+                </div>
             </section>
             <section id="films">
                 <h2>Films</h2>
