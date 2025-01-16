@@ -10,6 +10,7 @@ Dette projekt er en webapplikation, der giver brugerne mulighed for at udforske 
 - **Splash Screen**: En introduktionsskærm med et Star Wars-banner.
 - **Filtrering**: Filtrer planeter baseret på deres klima.
 - **Pagination**: Naviger gennem lister af karakterer og film med forrige/næste knapper.
+- **Responsiv Design**: Applikationen er responsiv og tilpasser sig forskellige skærmstørrelser.
 
 ## Teknologier
 - HTML
