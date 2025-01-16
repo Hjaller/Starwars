@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
     <head>
         <meta charset="utf-8">
@@ -13,69 +9,110 @@
         <link rel="stylesheet" href="assets/css/styles.css">
     </head>
     <body>
+        <!-- Splash Screen, vises i starten -->
+        <div class="splash-screen" id="splash-screen">
+            <!-- Intro-tekst, vises først -->
+            <div class="intro-text">A long time ago in a galaxy far, far away...</div>
+            <!-- Rullende tekst (crawl) -->
+            <div class="crawl-wrapper">
+              <div class="crawl-content">
+                <p>Episode IV</p>
+                <p>A NEW HOPE</p>
+                <p>
+                  It is a period of civil war. Rebel spaceships, striking from a hidden base, have won their first victory against the evil Galactic Empire.
+                </p>
+                <p>
+                  During the battle, Rebel spies managed to steal secret plans to the Empire's ultimate weapon, the DEATH STAR, an armored space station with enough power to destroy an entire planet.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        <!-- Header med navigation -->
         <header>
             <h1>Star Wars</h1>
             <nav>
                 <ul>
+                    <!-- Links til sektionerne for karakterer, planeter og film -->
                     <li><a href="#characters">Characters</a></li>
                     <li><a href="#planets">Planets</a></li>
                     <li><a href="#films">Films</a></li>
                 </ul>
             </nav>
         </header>
+
+        <!-- Hovedindhold -->
         <main>
+            <!-- Bannersektion -->
             <section id="banner">
-                <img src="assets/img/banner.jpg" alt="Star Wars Banner"">
+                <img src="assets/img/banner.jpg" alt="Star Wars Banner">
             </section>
+
+            <!-- Introduktionstekst -->
             <section id="intro">
                 <p>Welcome to the Star Wars web application. Explore characters, planets, and films from the Star Wars universe.</p>
             </section>
+
+            <!-- Karaktersektion -->
             <section id="characters">
                 <h2>Characters</h2>
+                <!-- Søgning efter karakter -->
                 <input type="text" id="search" placeholder="Search for a character...">
+                <!-- Container for karaktere, der bliver dynamisk indlæst -->
                 <div class="character-container" id="character-list">
-                    <!-- Character content will be dynamically loaded here -->
+                    <!-- Karakterindhold bliver dynamisk indlæst her -->
                 </div>
+                <!-- Pagination for karakterer -->
                 <div id="pagination">
                     <button id="prev">Previous</button>
                     <button id="next">Next</button>
                 </div>
             </section>
+
+            <!-- Planetsektion -->
             <section id="planets">
                 <h2>Planets</h2>
+                <!-- Klimafilter, der bliver dynamisk indlæst -->
                 <select id="climate-filter">
-                    <option value="">All Climates</option>
-                    <option value="arid">Arid</option>
-                    <option value="temperate">Temperate</option>
-                    <option value="tropical">Tropical</option>
-                    <!-- Add more climate options as needed -->
+                    <!-- Klimaer bliver dynamisk indlæst her -->
                 </select>
+                <!-- Container for planeter, der bliver dynamisk indlæst -->
                 <div class="planet-container" id="planet-list">
-                    <!-- Planet content will be dynamically loaded here -->
+                    <!-- Planetindhold bliver dynamisk indlæst her -->
                 </div>
             </section>
+
+            <!-- Filmsektion -->
             <section id="films">
                 <h2>Films</h2>
+                <!-- Container for film, der bliver dynamisk indlæst -->
                 <div class="film-container" id="film-list">
-                    <!-- Film content will be dynamically loaded here -->
+                    <!-- Filmindhold bliver dynamisk indlæst her -->
                 </div>
+                <!-- Pagination for film -->
                 <div id="film-pagination">
                     <button id="film-prev">Previous</button>
                     <button id="film-next">Next</button>
                 </div>
             </section>
             
-            <!-- Modal for opening crawl -->
+            <!-- Modal for at åbne crawl -->
             <div id="modal" class="modal">
                 <div class="modal-content">
+                    <!-- Luk-knap for modal -->
                     <span class="close">&times;</span>
+                    <!-- Indholdet af crawl (episodeindhold) -->
                     <div id="crawl-content"></div>
                 </div>
             </div>
         </main>
+
+        <!-- Footer -->
         <footer>
-            <p></p>
+            <p>Lavet af <span>Hjalte Leth</span> | <a href="https://cv.leth.dev/">leth.dev</a> <span>2025</span></p>
         </footer>
+
+        <!-- JavaScript-fil -->
         <script src="assets/js/script.js" async defer></script>
     </body>
 </html>

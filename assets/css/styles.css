@@ -1,191 +1,366 @@
-/* Import Star Jedi font */
+/* Importer Star Jedi font */
 @font-face {
-    font-family: 'Star Jedi';
-    src: url('../fonts/Starjedi.ttf') format('truetype');
+  font-family: "Star Jedi";
+  src: url("../fonts/Starjedi.ttf") format("truetype");
 }
 
-/* General Styles */
+/* Generelle stilarter */
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #000;
-    color: #fff;
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  color: #fff;
 }
 
+/* Hele skærmen (Splash screen) */
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  color: yellow;
+  font-family: "Arial", sans-serif;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Placerer teksten øverst */
+  padding-top: 5%; /* Tilføjer plads fra toppen */
+  z-index: 999;
+}
+
+/* Intro-tekst */
+.intro-text {
+  font-size: 2em;
+  text-align: center;
+  opacity: 1;
+  animation: fade-out 3s ease-in forwards;
+
+  /* Centrerer teksten på skærmen */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Fade-effekt */
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Wrapper til den rullende tekst */
+.crawl-wrapper {
+  width: 80%;
+  perspective: 800px;
+  opacity: 0; /* Starter som usynlig */
+  animation: show-crawl 1s linear forwards 3s; /* Starter efter intro-teksten */
+  margin-top: 20%; /* Flytter teksten længere ned */
+}
+
+/* Den rullende tekst */
+.crawl-content {
+  text-align: center;
+  font-size: 1.5em;
+  transform-origin: center bottom;
+  animation: starwars-crawl 8s linear forwards;
+  line-height: 1.8; /* Justerer linjeafstand for læsbarhed */
+}
+
+/* Effekt for at gøre crawl synlig */
+@keyframes show-crawl {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Star Wars-rulleeffekt */
+@keyframes starwars-crawl {
+  0% {
+    transform: rotateX(20deg) translateZ(0) translateY(100%);
+  }
+  100% {
+    transform: rotateX(20deg) translateZ(-500px) translateY(-200%);
+  }
+}
+
+/* Header stil */
 header {
-    background-color: #111;
-    padding: 20px;
-    text-align: center;
+  background-color: #111;
+  padding: 20px;
+  text-align: center;
 }
 
 header h1 {
-    font-family: 'Star Jedi', sans-serif;
-    color: #ffcc00;
-    margin: 0;
+  font-family: "Star Jedi", sans-serif;
+  color: #ffcc00;
+  margin: 0;
 }
 
+/* Navigation stilarter */
 nav ul {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 nav ul li {
-    display: inline;
-    margin: 0 15px;
+  display: inline;
+  margin: 0 15px;
 }
 
 nav ul li a {
-    color: #ffcc00;
-    text-decoration: none;
-    font-weight: bold;
+  color: #ffcc00;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 nav ul li a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 nav ul li a.active {
-    color: #fff;
+  color: #fff;
 }
 
+/* Main indhold */
 main {
-    padding: 20px;
+  padding: 20px;
 }
 
+/* Bannerbillede */
 #banner img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
+/* Introduktionstekst */
 #intro {
-    text-align: center;
-    margin: 20px 0;
+  text-align: center;
+  margin: 20px 0;
 }
 
-
+/* Sektioner */
 section h2 {
-    font-family: 'Star Jedi', sans-serif;
-    color: #ffcc00;
-    border-bottom: 2px solid #ffcc00;
-    padding-bottom: 10px;
+  font-family: "Star Jedi", sans-serif;
+  color: #ffcc00;
+  border-bottom: 2px solid #ffcc00;
+  padding-bottom: 10px;
 }
 
+/* Footer stil */
 footer {
-    background-color: #111;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
+  background-color: #111;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
 }
 
 footer p {
-    margin: 0;
-    color: #ffcc00;
+  margin: 0;
+  color: #ffcc00;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    nav ul li {
-        display: block;
-        margin: 10px 0;
-    }
-
-    #intro {
-        font-size: 14px;
-    }
-
-    .character, .planet, .film{
-        flex: 1 1 100%; /* Fuldbredde for hver række */
-    }
-
-    .character-container, .planet-container, .film-container{
-        flex-direction: column; /* Sørg for vertikal placering */
-    }
+/* Karakter-, planet- og film-bokse */
+.character,
+.planet,
+.film {
+  border: 1px solid #444;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #222;
+  flex: 1 1 calc(33.333% - 20px); /* Juster bredden for større skærme */
+  box-sizing: border-box;
 }
 
-.character, .planet, .film {
-    border: 1px solid #444;
-    padding: 10px;
-    margin: 10px 0;
-    background-color: #222;
-    flex: 1 1 calc(33.333% - 20px); /* Adjust the width for larger screens */
-    box-sizing: border-box;
-}
-    
-.character-container, .planet-container, .film-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-between; /* Optional: For spacing */
+/* Container til karakterer, planeter og film */
+.character-container,
+.planet-container,
+.film-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between; /* Valgfrit: For spacing */
 }
 
-
-#search, #climate-filter, .view-crawl{
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 6px;
+/* Søgefelt og filter */
+#search,
+#climate-filter,
+.view-crawl {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 6px;
 }
 
 #search input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #444;
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #444;
 }
 
-#next, #prev, #film-prev, #film-next {
-    border-radius: 6px;
-    padding: 8px 30px;
-    background-color: lightgray;
+/* Knapper til navigation */
+#next,
+#prev,
+#film-prev,
+#film-next {
+  border-radius: 6px;
+  padding: 8px 30px;
+  background-color: lightgray;
 }
 
-#next:hover:not([disabled]), #prev:hover:not([disabled]), #film-prev:hover:not([disabled]), #film-next:hover:not([disabled]) {
-    background-color: #ffcc00;
-    color: #000;
+/* Hover-effekt på knapper */
+#next:hover:not([disabled]),
+#prev:hover:not([disabled]),
+#film-prev:hover:not([disabled]),
+#film-next:hover:not([disabled]) {
+  background-color: #ffcc00;
+  color: #000;
 }
 
-
-#next:disabled, #prev:disabled, #film-prev:disabled, #film-next:disabled {
-    background-color: #444;
-    color: #fff;
+/* Deaktiverede knapper */
+#next:disabled,
+#prev:disabled,
+#film-prev:disabled,
+#film-next:disabled {
+  background-color: #444;
+  color: #fff;
 }
 
-
-/* Modal Styles */
+/* Modal stilarter */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
-    background-color: #111;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%;
-    color: #ffcc00;
+  background-color: #111;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  color: #ffcc00;
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: #fff;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Styling til footeren */
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  box-sizing: border-box;
+  margin-top: auto;
+}
+
+footer {
+    margin-top: auto;
+}
+/* Styling for links */
+footer a {
+  color: #ffcc00;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer p {
+    color: white;
     text-decoration: none;
-    cursor: pointer;
+    font-weight: medium;
+  }
+  
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer span {
+    color: #ffcc00;
+}
+
+/* Responsiv design */
+@media (max-width: 768px) {
+  nav ul li {
+    display: block;
+    margin: 10px 0;
+  }
+
+  #intro {
+    font-size: 14px;
+  }
+
+  .character,
+  .planet,
+  .film {
+    flex: 1 1 100%; /* Fuldbredde for hver række */
+  }
+
+  .character-container,
+  .planet-container,
+  .film-container {
+    flex-direction: column; /* Sørg for vertikal placering */
+  }
+
+  .intro-text {
+    font-size: 1.5em; /* Mindre tekst til små skærme */
+  }
+
+  .crawl-wrapper {
+    margin-top: 30%; /* Flytter crawlen længere ned på mindre skærme */
+  }
+
+  .crawl-content {
+    font-size: 1em; /* Mindre tekst til små skærme */
+    line-height: 1.5;
+  }
+  footer {
+    font-size: 12px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro-text {
+    font-size: 1.2em; /* Endnu mindre tekst til meget små skærme */
+  }
+
+  .crawl-content {
+    font-size: 0.8em; /* Endnu mindre tekst for bedre plads */
+  }
 }
